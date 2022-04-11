@@ -8,7 +8,7 @@ class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
 
     def __str__(self):
-        return f"{self.user.username} profile"
+        return f"{self.user.first_name} {self.user.last_name} profile"
 
     def save(self, *args, **kwargs):
         super().save(*args, **kwargs)
@@ -33,18 +33,18 @@ class Order(models.Model):
         )
 
     def __str__(self):
-        return f"{self.customer} order No.{self.id} on {self.date}. Oredr status: {self.status}"
-    
-    def get_absolute_url(self):
-        return reverse('book-detail', args=[str(self.id)])
+        return f"{self.user.first_name} order No.{self.id} on {self.date}."
 
 
 class Product(models.Model):
     name = models.CharField('Product name', max_length=200)
     price = models.FloatField('Price')
 
+    def __str__(self):
+        return f"Item {self.name} costs € {self.price}"    
+
 class ProductOrder(models.Model):
     order = models.ForeignKey(Order, on_delete=models.SET_NULL, null=True)
-    quantity = models.IntegerField('Quantity')
     selection = models.ForeignKey(Product, on_delete=models.SET_NULL, null=True)
+    quantity = models.IntegerField('Quantity')    
 
