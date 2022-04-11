@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block title %}<title>{{ product.name }} | Page</title>{% endblock %}
+{% block content %}
+<section class="resume-section" id="skills">
+  <div class="resume-section-content">
+    <h2 class="mb-5">{{ product.name }}</h2>
+    <div class="media">
+      <img class="rounded-circle account-img" src="{{ user.profile.picture.url }}">
+      <div class="media-body">
+        <h2 class="account-heading">Price €{{ product.price }}</h2>
+      </div>
+  </div>
+</section>
+{% endblock %}

@@ -44,7 +44,7 @@ class Product(models.Model):
         return f"Item {self.name} costs € {self.price}"    
 
 class ProductOrder(models.Model):
-    order = models.ForeignKey(Order, on_delete=models.SET_NULL, null=True)
+    order = models.ForeignKey('Order', on_delete=models.SET_NULL, null=True)
     selection = models.ForeignKey(Product, on_delete=models.SET_NULL, null=True)
     quantity = models.IntegerField('Quantity')    
 
