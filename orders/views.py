@@ -29,6 +29,10 @@ class OrderListView(ListView):
     paginate_by = 5
     template_name = 'order_list.html'
 
+    def get_queryset(self):
+        return Order.objects.filter(user=self.request.user).order_by('date')
+
+
 class OrderCreateView(CreateView, LoginRequiredMixin, UserPassesTestMixin):
     model = Order
     form_class = OrderForm
