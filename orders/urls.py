@@ -16,4 +16,6 @@ urlpatterns = [
     path('products/', views.ProductListView.as_view(), name='products'),
     path('products/<int:pk>', views.ProductDetailView.as_view(), name='product'),
     path('orders/<int:pk>/update', views.OrderUpdateView.as_view(), name='order-update'),
+    path('orders/<int:pk>/newitem', views.PositionCreateView.as_view(), name='new-item'),
+    path('orders/<int:pk>/edititem/<int:id>', views.PositionUpdateView.as_view(), name='edit-item'),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

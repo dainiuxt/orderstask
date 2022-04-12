@@ -9,8 +9,8 @@ from django.views.generic import (
                                 )
 from django.contrib.auth.mixins import UserPassesTestMixin
 from django.contrib.auth.mixins import LoginRequiredMixin
-from orders.models import Order, User, Product
-from .forms import OrderForm, UserUpdateForm
+from orders.models import Order, User, Product, ProductOrder
+from .forms import OrderForm, RowFormUpdate, UserUpdateForm, RowForm
 from django.views.generic.edit import FormMixin
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
@@ -154,3 +154,41 @@ def profile(request):
         # 'p_form': p_form,
     }    
     return render(request, 'profile.html', context)
+
+
+class PositionCreateView(LoginRequiredMixin, CreateView):
+    model = ProductOrder
+    form_class = RowForm
+    # success_url = "orders/"
+    template_name = 'position_new.html'
+
+    def get_success_url(order):
+        return reverse('orders')
+
+    def form_valid(self, form):
+        # form.instance.orderrow = self.request.orderrow
+        return super().form_valid(form)
+
+    def get_context_data(self, **kwargs):
+        order = self.object
+        context = super().get_context_data(**kwargs)
+        context['form'].fields['order'].queryset = Order.objects.filter(user=self.request.user)
+        return context
+
+
+class PositionUpdateView(LoginRequiredMixin, UpdateView):
+    model = ProductOrder
+    form_class = RowFormUpdate
+    template_name = 'position_update.html'
+
+    def get_success_url(order):
+        return reverse('orders')
+
+    def form_valid(self, form):
+        # form.instance.orderrow = self.request.orderrow
+        return super().form_valid(form)
+
+    def get_context_data(self, **kwargs):
+        order = self.object
+        context = super().get_context_data(**kwargs)
+        return context

@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-
+{% load crispy_forms_tags %}
 {% block content %}
 <section class="resume-section" id="skills">
   <div class="resume-section-content">
@@ -12,12 +12,13 @@
     <ul>
       {% for row in order.productorder_set.all %}
       <li>
-        {{ row.selection.name }}, QTY: {{ row.quantity }}; Item price: €{{ row.selection.price}}; Subtotal: €{{ row.row_suma }}
+        {{ row.selection.name }}, QTY: {{ row.quantity }}; Item price: €{{ row.selection.price}}; Subtotal: €{{ row.row_suma }} <a href="edititem/{{ row.id }}">Edit</a>
       </li>
       {% endfor %}
       <hr>
       <li>TOTAL €: {{ order.suma }}</li>
     </ul>
+    <a href="newitem" class="btn btn-primary btn-sm" tabindex="-1" role="button" aria-disabled="true">Add new item</a>
   </div>
 </section>
 {% endblock %}

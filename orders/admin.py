@@ -13,13 +13,11 @@ class OrderAdmin(admin.ModelAdmin):
     inlines = [ProductOrderInline]
 
 
-
-
 class ProductAdmin(admin.ModelAdmin):
     list_display = ('name', 'price')
 
 class ProductOrderAdmin(admin.ModelAdmin):
-    list_display = ('order', 'quantity', 'selection')
+    list_display = ('id', 'order', 'quantity', 'selection')
 
 admin.site.register(Profile)
 admin.site.register(Order, OrderAdmin)

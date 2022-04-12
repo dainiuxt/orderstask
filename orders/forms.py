@@ -1,5 +1,5 @@
 from django import forms
-from .models import Order, Profile
+from .models import Order, ProductOrder
 from django.contrib.auth.models import User
 
 class DateInput(forms.DateInput):
@@ -8,7 +8,6 @@ class DateInput(forms.DateInput):
 class OrderForm(forms.ModelForm):
     class Meta:
         model = Order
-        # fields = fields = '__all__'
         fields = ['status', 'date']
         widgets = {
             'user': forms.HiddenInput(), 'date': DateInput(), 
@@ -22,6 +21,16 @@ class UserUpdateForm(forms.ModelForm):
         fields = ['username', 'email']
 
 
-# class ProfileUpdateForm(forms.ModelForm):
-#     class Meta:
-#         model = Profile
+class RowForm(forms.ModelForm):
+    class Meta:
+        model = ProductOrder
+        fields = ['order', 'selection', 'quantity']
+        # widgets = {
+        #     'order': forms.HiddenInput()}
+
+class RowFormUpdate(forms.ModelForm):
+    class Meta:
+        model = ProductOrder
+        fields = ['order', 'selection', 'quantity']
+        # widgets = {
+        #     'order': forms.HiddenInput(), 'productorder_id': forms.HiddenInput()}
