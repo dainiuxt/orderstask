@@ -24,13 +24,11 @@ class UserUpdateForm(forms.ModelForm):
 class RowForm(forms.ModelForm):
     class Meta:
         model = ProductOrder
-        fields = ['order', 'selection', 'quantity']
-        # widgets = {
-        #     'order': forms.HiddenInput()}
+        fields = ['order', 'id', 'selection', 'quantity']
+
 
 class RowFormUpdate(forms.ModelForm):
     class Meta:
         model = ProductOrder
         fields = ['order', 'selection', 'quantity']
-        # widgets = {
-        #     'order': forms.HiddenInput(), 'productorder_id': forms.HiddenInput()}
+
