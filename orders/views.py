@@ -16,7 +16,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.views.decorators.csrf import csrf_protect, csrf_exempt
 
-@csrf_exempt
+# @csrf_exempt
 def index(request):
     all_orders = Order.objects.all()
     context = {

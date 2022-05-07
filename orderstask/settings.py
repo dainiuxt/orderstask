@@ -27,6 +27,9 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['0.0.0.0']
 
+CSRF_TRUSTED_ORIGINS = [
+    'https://orderstask.herokuapp.com'
+]
 
 # Application definition
 
