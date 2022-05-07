@@ -23,9 +23,11 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECRET_KEY = 'django-insecure-+5bn_@ga3ssm$wu6g9lb9@n+^9i^2z2@g7y22r(500kx8-)668'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = ['0.0.0.0']
+ALLOWED_HOSTS = ['orderstask.herokuapp.com']
+
+# DEBUG_PROPAGATE_EXCEPTIONS = True
 
 CSRF_TRUSTED_ORIGINS = [
     'https://orderstask.herokuapp.com'
